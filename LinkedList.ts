@@ -1,12 +1,13 @@
 class Node<T> {
-  value: T | null;
+  value: T;
   next: Node<unknown> | null;
 
-  constructor(value: T | null = null) {
+  constructor(value: T) {
     this.value = value;
     this.next = null;
   }
 }
+
 class LinkedList<T> {
   length: number;
   head: Node<unknown> | null;
@@ -24,11 +25,24 @@ class LinkedList<T> {
       this.length++;
     }
   }
+
+  push<Y>(value: Y): number {
+    const newNode = new Node<Y>(value);
+    if (!this.tail) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this.length;
+  }
 }
 
 const myEmptyLinkedList = new LinkedList()
-const myLinkedList = new LinkedList<number>(5)
-
+myEmptyLinkedList.push("x");
+myEmptyLinkedList.push(1);
+myEmptyLinkedList.push(false);
 
 console.log(myEmptyLinkedList);
-console.log(myLinkedList);
