@@ -7,17 +7,28 @@ class Node<T> {
     this.next = null;
   }
 }
+class LinkedList<T> {
+  length: number;
+  head: Node<unknown> | null;
+  tail: Node<unknown> | null;
 
-const newNode = new Node<string>("hello world");
-const emptyNode = new Node<string>(); 
-const numberNode = new Node<number>(1);
+  constructor(value: T | null = null) {
+    this.length = 0;
+    if (value === null || value === undefined) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      const newNode = new Node<T>(value);
+      this.head = newNode;
+      this.tail = newNode;
+      this.length++;
+    }
+  }
+}
 
-newNode.next = emptyNode;
-emptyNode.next = numberNode;
-
-console.log(newNode);
-console.log(emptyNode);
+const myEmptyLinkedList = new LinkedList()
+const myLinkedList = new LinkedList<number>(5)
 
 
-console.log(newNode)
-console.log(emptyNode)
+console.log(myEmptyLinkedList);
+console.log(myLinkedList);
