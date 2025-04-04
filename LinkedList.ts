@@ -1,6 +1,6 @@
 class Node<T> {
   value: T;
-  next: Node<unknown> | null;
+  next: Node<T> | null;
 
   constructor(value: T) {
     this.value = value;
@@ -10,8 +10,8 @@ class Node<T> {
 
 class LinkedList<T> {
   length: number;
-  head: Node<unknown> | null;
-  tail: Node<unknown> | null;
+  head: Node<T> | null;
+  tail: Node<T> | null;
 
   constructor(value: T | null = null) {
     this.length = 0;
@@ -26,8 +26,8 @@ class LinkedList<T> {
     }
   }
 
-  push<Y>(value: Y): number {
-    const newNode = new Node<Y>(value);
+  push(value: T): number {
+    const newNode = new Node<T>(value);
     if (!this.tail) {
       this.head = newNode;
       this.tail = newNode;
@@ -37,6 +37,29 @@ class LinkedList<T> {
     }
     this.length++;
     return this.length;
+  }
+
+  pop(): T | undefined {
+    if (!this.head) return undefined;
+    
+    if (this.length === 1) {
+      const temp = this.head;
+      this.head = null;
+      this.tail = null;
+      this.length--;
+      return temp.value;
+    } else {
+      let temp = this.head;
+      let pre = temp;
+      while (temp.next) {
+        pre = temp;
+        temp = temp.next;
+      }
+      this.tail = pre;
+      this.tail.next = null;
+      this.length--;
+      return temp.value;
+    }
   }
 }
 
