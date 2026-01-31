@@ -1,26 +1,26 @@
 // This program finds the sample variance of the number of fatal airline accidents from 1997 to 2005.
-// Data Sample Source: National Saftey Council.
+// Data Sample Source: National Safety Council.
 
-function getDataValueCount(sample) {
-  const keys = Object.keys(sample);
-  let n = 0;
+function getDataValueTotal(sample) {
+  const values = Object.values(sample);
+  let sum = 0;
 
-  for (let i = 0; i < keys.length; i++) {
-    n += sample[keys[i]];
+  for (let i = 0; i < values.length; i++) {
+    sum += values[i];
   }
 
-  return n;
+  return sum;
 }
 
 function getSampleMedian(sample) {
-  const keys = Object.keys(sample)
-  const n = keys.length;
+  const values = Object.values(sample).slice().sort((a, b) => a - b);
+  const n = values.length;
 
-  if (n % 2 != 0) {
-    return sample[keys[(n + 1) / 2]];
+  if (n % 2 !== 0) {
+    return values[((n + 1) / 2) - 1];
   }
 
-  return 0.5 * ((sample[keys[n / 2]]) + (sample[keys[n + 1 / 2]]));
+  return (values[n / 2 - 1] + values[n / 2]) / 2;
 }
 
 function getSampleMean(total, sample) {
@@ -28,17 +28,15 @@ function getSampleMean(total, sample) {
 }
 
 function getSampleVariance(sample, mean) {
-  const keys = Object.keys(sample);
+  const values = Object.values(sample);
   let s2 = 0;
 
-  for (let i = 0; i < keys.length; i++) {
-    let x = sample[keys[i]];
+  for (let i = 0; i < values.length; i++) {
+    const x = values[i];
     s2 += (x - mean) ** 2;
   }
 
-  s2 /= keys.length - 1
-
-  return s2;
+  return s2 / (values.length - 1);
 }
 
 const accidents = {
@@ -53,7 +51,7 @@ const accidents = {
   "2005": 18
 };
 
-const totalAccidents = getDataValueCount(accidents);
+const totalAccidents = getDataValueTotal(accidents);
 const mean = getSampleMean(totalAccidents, accidents);
 const median = getSampleMedian(accidents);
 const sampleVariance = getSampleVariance(accidents, mean);
