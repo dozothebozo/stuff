@@ -56,9 +56,6 @@ const mean = getSampleMean(totalAccidents, accidents);
 const median = getSampleMedian(accidents);
 const sampleVariance = getSampleVariance(accidents, mean);
 
-
-// 3. print the results.
-
 console.log(`Frequency Table: \n${JSON.stringify(accidents)}\n`);
 console.log(`Total number of airline accidents from 1997 - 2005: ${totalAccidents}\n`);
 console.log(`Mean: ${mean}\n`);
