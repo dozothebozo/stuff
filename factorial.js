@@ -13,6 +13,5 @@ function factorial(n) {
 }
 
 const n = Number(prompt("Enter a non-negative integer:"));
-const res = factorial(n);
 
-n >= 0 ? console.log(`${n}! is ${res}.`) : console.log("non-negative inputs are invalid.");
+n >= 0 ? console.log(`${n}! is ${factorial(n)}.`) : console.log("negative inputs are invalid.");
