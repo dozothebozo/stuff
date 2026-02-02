@@ -7,7 +7,7 @@ function NewtonSqrt(x, guess, iterations) {
   return guess;
 }
 
-let x = Number(prompt("Enter the number you want the square root of:"));
+let x = Number(prompt("Enter a number you want the square root of (num > 0):"));
 let iterations = Number(prompt("Enter the number of iterations:"));
 let guess = x / 2;
 
