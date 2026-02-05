@@ -12,6 +12,10 @@ function getDataValueTotal(sample) {
   return sum;
 }
 
+function getSD(variance) {
+  return Math.sqrt(variance);
+}
+
 function getSampleMedian(sample) {
   const values = Object.values(sample).slice().sort((a, b) => a - b);
   const n = values.length;
@@ -55,9 +59,11 @@ const totalAccidents = getDataValueTotal(accidents);
 const mean = getSampleMean(totalAccidents, accidents);
 const median = getSampleMedian(accidents);
 const sampleVariance = getSampleVariance(accidents, mean);
+const sampleSD = getSD(sampleVariance);
 
 console.log(`Frequency Table: \n${JSON.stringify(accidents)}\n`);
 console.log(`Total number of airline accidents from 1997 - 2005: ${totalAccidents}\n`);
 console.log(`Mean: ${mean}\n`);
 console.log(`Median: ${median}\n`);
 console.log(`Sample variance: ${sampleVariance}`);
+console.log(`SD: ${sampleSD}`);
