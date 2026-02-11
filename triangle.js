@@ -21,3 +21,28 @@
 //       1 2 3
 //         1 2
 //           1
+
+function getRows() {
+  const rows = Number(prompt("How many rows?"));
+  return rows;
+}
+
+function printTriangle(n) {
+  for (let i = 1; i <= n; i++) {
+    let row = "";
+
+    for (let j = 1; j <= i - 1; j++) {
+      row += " ";
+    }
+
+    for (let k = 1; k <= (n + 1) - i; k++) {
+      row += `${k}`;
+    }
+
+    console.log(row);
+
+  }
+}
+
+const rows = getRows();
+printTriangle(rows);
