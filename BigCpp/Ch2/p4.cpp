@@ -10,12 +10,18 @@ double getMeasurement() {
   return x;
 }
 
-double miles(double measurement);
-double feet(double measurement);
-double inches(double measurement);
+double miles(double measurement) { return measurement / 1609; }
+
+double feet(double measurement) { return measurement * 3.281; }
+
+double inches(double measurement) { return measurement * 39.37; }
 
 int main() {
   double measurement{getMeasurement()};
-  std::cout << measurement;
+
+  std::cout << "Miles: " << miles(measurement) << '\n';
+  std::cout << "Feet: " << feet(measurement) << '\n';
+  std::cout << "Inches: " << inches(measurement) << '\n';
+
   return 0;
 }
