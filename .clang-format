@@ -4,21 +4,38 @@ BasedOnStyle: LLVM
 
 IndentWidth: 2
 TabWidth: 2
+UseTab: Never
+
 AccessModifierOffset: -2
 NamespaceIndentation: All
 IndentCaseLabels: true
 
-AlignConsecutiveAssignments: true
-AlignConsecutiveMacros: true
-AlignConsecutiveDeclarations: AcrossEmptyLines
-PointerAlignment: Left
-
 ColumnLimit: 180
 BreakBeforeBraces: Attach
-AlwaysBreakTemplateDeclarations: Yes
+
+PointerAlignment: Left
+AlignAfterOpenBracket: Align
+
+AlignConsecutiveMacros: true
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: AcrossEmptyLines
+AlignTrailingComments: true
 
 AllowShortIfStatementsOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: Empty
+
+IncludeBlocks: Preserve
 SortIncludes: false
 SortUsingDeclarations: false
-FixNamespaceComments: false
----
+
+ReflowComments: false
+
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpacesInAngles: false
+SpaceBeforeParens: ControlStatements
+SpaceBeforeRangeBasedForLoopColon: true
+SpacesBeforeTrailingComments: 1
+
+BraceWrapping:
+  AfterEnum: false
