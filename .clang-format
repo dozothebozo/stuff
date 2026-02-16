@@ -16,9 +16,6 @@ BreakBeforeBraces: Attach
 PointerAlignment: Left
 AlignAfterOpenBracket: Align
 
-AlignConsecutiveMacros: true
-AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: AcrossEmptyLines
 AlignTrailingComments: true
 
 AllowShortIfStatementsOnASingleLine: Never
