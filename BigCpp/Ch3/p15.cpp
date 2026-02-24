@@ -31,3 +31,38 @@
 //
 // Computer: Enter U.S. dollars to convert. Enter 0 or negative to stop:
 // User: 0
+
+#include <iostream>
+#include <limits>
+
+int getExchangeRate() {
+  int x{};
+
+  while (true) {
+    std::cout << "Enter today's exchange rate USD to JPY: ";
+    if (std::cin >> x) {
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      return x;
+    } else {
+      std::cout << "Invalid input. Please try again.\n";
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+  }
+}
+
+int main() {
+  int rate{getExchangeRate()};
+
+  while (true) {
+    int dollars{};
+    std::cout << "Enter U.S. dollars to convert. Enter 0 or negative to stop: ";
+    std::cin >> dollars;
+
+    if (dollars <= 0) {
+      break;
+    }
+
+    std::cout << dollars << " USD = " << rate * dollars << " JPY" << '\n';
+  }
+}
