@@ -18,3 +18,49 @@
 // Computer: Enter hours worked in the past week:
 // User: 45.5
 // Computer: Paycheck for Jane Smith: $482.50
+
+#include <iomanip>
+#include <iostream>
+#include <limits>
+#include <string>
+
+std::string getEmployeeName() {
+  std::string s{};
+  std::cout << "Enter employee name: ";
+  std::getline(std::cin >> std::ws, s);
+  return s;
+}
+
+double getDouble(std::string prompt) {
+  double x{};
+
+  while (true) {
+    std::cout << prompt;
+    if (std::cin >> x && x > 0) {
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      return x;
+    } else {
+      std::cout << "Invalid input. Please try again.\n";
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+  }
+}
+
+int main() {
+  std::string employeeName{getEmployeeName()};
+  double wage{getDouble("Enter hourly wage: ")};
+  double hours{getDouble("Enter hours worked in the past week: ")};
+  double pay{};
+
+  if (hours <= 40) {
+    pay = wage * hours;
+  } else {
+    pay = wage * 40 + (wage * 1.5 * (hours - 40));
+  }
+
+  std::cout << std::fixed << std::showpoint << std::setprecision(2);
+  std::cout << "Paycheck for " << employeeName << ": $" << pay << '\n';
+
+  return 0;
+}
