@@ -24,3 +24,39 @@
 // Computer: Please enter three numbers:
 // User: -5.5 3.14 3.14159
 // Computer: The largest number is 3.14159
+
+#include <iostream>
+#include <limits>
+
+int main() {
+  double float1{};
+  double float2{};
+  double float3{};
+  double max{};
+
+  while (true) {
+    std::cout << "Please enter three numbers: ";
+    if (std::cin >> float1 >> float2 >> float3) {
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      break;
+    } else {
+      std::cout << "Invalid input. Please try again.\n";
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+  }
+
+  max = float1;
+
+  if (float2 > max) {
+    max = float2;
+  }
+
+  if (float3 > max) {
+    max = float3;
+  }
+
+  std::cout << "The largest number is " << max << '\n';
+
+  return 0;
+}
