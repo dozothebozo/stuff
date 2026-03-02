@@ -18,3 +18,41 @@
 //    - The count of values (n)
 //    - The sum of the values (sum(x_i))
 //    - The sum of the squares of the values (sum(x_i^2))
+
+#include <cmath>
+#include <iostream>
+
+int main() {
+  int count{0};
+  double sum{0.0};
+  double sumsq{0.0};
+  double x{};
+
+  std::cout << "Enter data values (Ctrl+D or Ctrl+Z to end):\n";
+
+  while (std::cin >> x) {
+    sum += x;
+    sumsq += x * x;
+    ++count;
+  }
+
+  if (count == 0) {
+    std::cout << "\nNo data was provided.\n";
+    return 1;
+  }
+
+  double mean{sum / count};
+
+  std::cout << "count: " << count << '\n';
+  std::cout << "sum: " << sum << '\n';
+  std::cout << "mean: " << mean << '\n';
+
+  if (count < 2) {
+    std::cout << "sd requires at least 2 data points.\n";
+  } else {
+    double sd{std::sqrt((sumsq - (1.0 / count) * (sum * sum)) / (count - 1))};
+    std::cout << "sd: " << sd << '\n';
+  }
+
+  return 0;
+}
