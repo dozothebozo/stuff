@@ -1,20 +1,62 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <cstdlib>
+
+void ignoreLine() {
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+// learncpp
+// returns true if extraction failed, false otherwise
+bool clearFailedExtraction() {
+  // Check for failed extraction
+  if (!std::cin) // If the previous extraction failed
+  {
+    if (std::cin.eof()) // If the stream was closed
+    {
+      std::exit(0); // Shut down the program now
+    }
+
+    // Let's handle the failure
+    std::cin.clear(); // Put us back in 'normal' operation mode
+    ignoreLine();     // And remove the bad input
+
+    return true;
+  }
+
+  return false;
+}
 
 int getInteger() {
-  int x{};
-
   while (true) {
+    int x{};
     std::cout << "Enter an integer: ";
-    if (std::cin >> x) {
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      return x;
-    } else {
+    std::cin >> x;
+
+    if (clearFailedExtraction()) {
       std::cout << "Invalid input. Please try again.\n";
-      std::cin.clear();
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      continue;
     }
+
+    ignoreLine();
+    return x;
+  }
+}
+
+double getDouble() {
+  while (true) {
+    double x{};
+    std::cout << "Enter a decimal number: ";
+    std::cin >> x;
+
+    if (clearFailedExtraction()) {
+      std::cout << "Invalid input. Please try again.\n";
+      continue;
+    }
+
+    ignoreLine();
+    return x;
   }
 }
 
@@ -42,33 +84,22 @@ bool isNegative(int n) {
 }
 
 int getIntegerInRange(int min, int max) {
-  int x{};
   while (true) {
+    int x{};
     std::cout << "Enter a number between " << min << " and " << max << ": ";
-    if (std::cin >> x && x >= min && x <= max) {
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      return x;
-    } else {
-      std::cout << "Invalid input. ";
-      std::cin.clear();
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin >> x;
+
+    if (clearFailedExtraction() || x < min || x > max) {
+      std::cout << "Invalid input. Please try again.\n";
+      continue;
     }
+
+    ignoreLine();
+    return x;
   }
 }
 
 int main() {
-  char choice{};
-
-  do {
-    std::cout << "I am running\n";
-
-    std::cout << "Do you want to continue? (y/n): ";
-    std::cin >> choice;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-  } while (choice != 'n' && choice != 'N');
-
-  std::cout << "Stopped.\n";
-
+  std::cout << "Hello World\n";
   return 0;
 }
