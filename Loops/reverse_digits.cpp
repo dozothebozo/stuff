@@ -38,10 +38,10 @@ bool clearFailedExtraction() {
 int getInteger() {
   while (true) {
     int x{};
-    std::cout << "Enter an integer: ";
+    std::cout << "Enter a positive integer: ";
     std::cin >> x;
 
-    if (clearFailedExtraction()) {
+    if (clearFailedExtraction() || x < 1) {
       std::cout << "Invalid input. Try again.\n";
       continue;
     }
@@ -52,9 +52,22 @@ int getInteger() {
   }
 }
 
+int reverseInteger(int num) {
+  int reverse{};
+
+  while (num > 0) {
+    int lastDigit{num % 10};
+    reverse = reverse * 10 + lastDigit;
+    num /= 10;
+  }
+
+  return reverse;
+}
+
 int main() {
-  int num{getInteger()};
-  std::cout << num;
+  int reverse{reverseInteger(getInteger())};
+
+  std::cout << "Reversed integer: " << reverse << '\n';
 
   return 0;
 }
