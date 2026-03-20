@@ -1,38 +1,65 @@
----
-Language: Cpp
 BasedOnStyle: LLVM
 
-IndentWidth: 2
-TabWidth: 2
+Language: Cpp
+
+IndentWidth: 4
+ContinuationIndentWidth: 4
+TabWidth: 4
 UseTab: Never
 
-AccessModifierOffset: -2
-NamespaceIndentation: All
-IndentCaseLabels: true
+ColumnLimit: 100
 
-ColumnLimit: 180
-BreakBeforeBraces: Attach
-
+DerivePointerAlignment: false
 PointerAlignment: Left
-AlignAfterOpenBracket: Align
+ReferenceAlignment: Left
 
-AlignTrailingComments: true
-
-AllowShortIfStatementsOnASingleLine: Never
-AllowShortFunctionsOnASingleLine: Empty
-
-IncludeBlocks: Preserve
-SortIncludes: false
-SortUsingDeclarations: false
-
-ReflowComments: false
-
-SpacesInParentheses: false
-SpacesInSquareBrackets: false
-SpacesInAngles: false
-SpaceBeforeParens: ControlStatements
-SpaceBeforeRangeBasedForLoopColon: true
-SpacesBeforeTrailingComments: 1
-
+BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterEnum: false
+  AfterClass: true
+  AfterStruct: true
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterControlStatement: true
+  AfterExternBlock: true
+  BeforeCatch: true
+  BeforeElse: true
+  BeforeLambdaBody: true
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+
+NamespaceIndentation: Inner
+CompactNamespaces: false
+FixNamespaceComments: true
+
+AllowShortFunctionsOnASingleLine: None
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+
+IndentCaseLabels: false
+
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+SpaceInEmptyParentheses: false
+
+BreakConstructorInitializers: BeforeComma
+ConstructorInitializerIndentWidth: 4
+SpaceBeforeCtorInitializerColon: true
+
+SortIncludes: CaseSensitive
+
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignTrailingComments: false
+
+BinPackArguments: true
+BinPackParameters: true
+
+Cpp11BracedListStyle: true
+SpaceBeforeCpp11BracedList: false
+
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
