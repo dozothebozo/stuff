@@ -1,105 +1,147 @@
+// Project:
+// Author:
+// Date:
+
+#include <cstdlib>
 #include <iostream>
 #include <string>
-#include <limits>
-#include <cstdlib>
 
-void ignoreLine() {
-  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-}
+using namespace std;
 
-// learncpp
-// returns true if extraction failed, false otherwise
-bool clearFailedExtraction() {
-  // Check for failed extraction
-  if (!std::cin) // If the previous extraction failed
-  {
-    if (std::cin.eof()) // If the stream was closed
+// function prototypes
+void ignoreLine();
+bool recoverStream();
+int getInteger(const string& prompt);
+double getDouble(const string& prompt);
+string getString(const string& prompt);
+int getIntegerInRange(int min, int max, const string& prompt = "");
+
+// templates
+template <typename T> T getNumber(const string& prompt)
+{
+    while (true)
     {
-      std::exit(0); // Shut down the program now
+        T value{};
+
+        cout << prompt;
+        cin >> value;
+
+        if (recoverStream())
+        {
+            cout << "Invalid input. Please try again.\n";
+            continue;
+        }
+
+        ignoreLine();
+        return value;
+    }
+}
+
+// global declarations of constants
+const int IGNORE_SIZE = 1000;
+
+int main()
+{
+    char choice;
+
+    do
+    {
+        cout << "Would you like to do it again? (y/n): ";
+        cin >> choice;
+        ignoreLine();
+    } while (choice == 'y' || choice == 'Y');
+
+    return 0;
+}
+
+void ignoreLine()
+{
+    cin.ignore(IGNORE_SIZE, '\n');
+}
+
+bool recoverStream()
+{
+    if (!cin)
+    {
+        if (cin.eof())
+        {
+            exit(1);
+        }
+
+        cin.clear();
+        ignoreLine();
+        return true;
     }
 
-    // Let's handle the failure
-    std::cin.clear(); // Put us back in 'normal' operation mode
-    ignoreLine();     // And remove the bad input
-
-    return true;
-  }
-
-  return false;
+    return false;
 }
 
-int getInteger() {
-  while (true) {
-    int x{};
-    std::cout << "Enter an integer: ";
-    std::cin >> x;
+int getInteger(const string& prompt)
+{
+    return getNumber<int>(prompt);
+}
 
-    if (clearFailedExtraction()) {
-      std::cout << "Invalid input. Please try again.\n";
-      continue;
+double getDouble(const string& prompt)
+{
+    return getNumber<double>(prompt);
+}
+
+string getString(const string& prompt)
+{
+    while (true)
+    {
+        string s{};
+
+        cout << prompt;
+        getline(cin, s);
+
+        if (recoverStream())
+        {
+            cout << "Invalid input. Please try again.\n";
+            continue;
+        }
+
+        if (s.length() == 0)
+        {
+            cout << "Input cannot be empty. Please try again.\n";
+            continue;
+        }
+
+        return s;
     }
-
-    ignoreLine();
-    return x;
-  }
 }
 
-double getDouble() {
-  while (true) {
-    double x{};
-    std::cout << "Enter a decimal number: ";
-    std::cin >> x;
+int getIntegerInRange(int min, int max, const string& prompt)
+{
+    while (true)
+    {
+        int x{};
 
-    if (clearFailedExtraction()) {
-      std::cout << "Invalid input. Please try again.\n";
-      continue;
+        if (!prompt.empty())
+        {
+            cout << prompt;
+        }
+        else
+        {
+            cout << "Enter a number between " << min << " and " << max << ": ";
+        }
+
+        cin >> x;
+
+        if (recoverStream())
+        {
+            cout << "Invalid input. Please try again.\n";
+            continue;
+        }
+
+        if (x < min || x > max)
+        {
+            cout << "Input must be between " << min << " and " << max << ". Please try again.\n";
+            ignoreLine();
+            continue;
+        }
+
+        ignoreLine();
+        return x;
     }
-
-    ignoreLine();
-    return x;
-  }
-}
-
-std::string getString() {
-  std::string s{};
-  std::cout << "Enter text: ";
-  std::getline(std::cin >> std::ws, s);
-  return s;
-}
-
-bool isEven(int n) {
-  return (n % 2 == 0);
-}
-
-bool isOdd(int n) {
-  return (n % 2 != 0);
-}
-
-bool isPositive(int n) {
-  return (n > 0);
-}
-
-bool isNegative(int n) {
-  return (n < 0);
-}
-
-int getIntegerInRange(int min, int max) {
-  while (true) {
-    int x{};
-    std::cout << "Enter a number between " << min << " and " << max << ": ";
-    std::cin >> x;
-
-    if (clearFailedExtraction() || x < min || x > max) {
-      std::cout << "Invalid input. Please try again.\n";
-      continue;
-    }
-
-    ignoreLine();
-    return x;
-  }
-}
-
-int main() {
-  std::cout << "Hello World\n";
-  return 0;
 }
