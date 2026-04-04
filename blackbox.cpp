@@ -48,6 +48,12 @@ int main()
     {
         cout << "Would you like to do it again? (y/n): ";
         cin >> choice;
+
+        if (recoverStream())
+        {
+            break;
+        }
+
         ignoreLine();
     } while (choice == 'y' || choice == 'Y');
 
