@@ -15,6 +15,7 @@ int getInteger(const string& prompt);
 double getDouble(const string& prompt);
 string getString(const string& prompt);
 int getIntegerInRange(int min, int max, const string& prompt = "");
+bool getBoolean(const string& prompt);
 
 // templates
 template <typename T> T getNumber(const string& prompt)
@@ -84,12 +85,42 @@ bool recoverStream()
 
 int getInteger(const string& prompt)
 {
-    return getNumber<int>(prompt);
+    while (true)
+    {
+        int value{};
+
+        cout << prompt;
+        cin >> value;
+
+        if (recoverStream())
+        {
+            cout << "Invalid input. Please try again.\n";
+            continue;
+        }
+
+        ignoreLine();
+        return value;
+    }
 }
 
 double getDouble(const string& prompt)
 {
-    return getNumber<double>(prompt);
+    while (true)
+    {
+        double value{};
+
+        cout << prompt;
+        cin >> value;
+
+        if (recoverStream())
+        {
+            cout << "Invalid input. Please try again.\n";
+            continue;
+        }
+
+        ignoreLine();
+        return value;
+    }
 }
 
 string getString(const string& prompt)
@@ -149,5 +180,36 @@ int getIntegerInRange(int min, int max, const string& prompt)
 
         ignoreLine();
         return x;
+    }
+}
+
+bool getBoolean(const string& prompt)
+{
+    while (true)
+    {
+        char value{};
+
+        cout << prompt;
+        cin >> value;
+
+        if (recoverStream())
+        {
+            cout << "Invalid input. Please try again.\n";
+            continue;
+        }
+
+        ignoreLine();
+
+        if (value == 'y' || value == 'Y')
+        {
+            return true;
+        }
+
+        if (value == 'n' || value == 'N')
+        {
+            return false;
+        }
+
+        cout << "Invalid input. Please enter y or n.\n";
     }
 }
