@@ -46,6 +46,7 @@ SpacesInParentheses: false
 SpaceInEmptyParentheses: false
 
 BreakConstructorInitializers: BeforeComma
+PackConstructorInitializers: CurrentLine
 ConstructorInitializerIndentWidth: 4
 SpaceBeforeCtorInitializerColon: true
 
