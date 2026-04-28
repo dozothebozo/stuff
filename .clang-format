@@ -9,6 +9,8 @@ UseTab: Never
 
 ColumnLimit: 100
 
+BreakTemplateDeclarations: Yes
+
 DerivePointerAlignment: false
 PointerAlignment: Left
 ReferenceAlignment: Left
