@@ -10,15 +10,19 @@ class Rectangle
   public:
     explicit Rectangle(double width = 0.0, double height = 0.0);
 
-    void setWidth(double width)
+    double width() const
     {
-        m_width = width;
+        return m_width;
     }
 
-    void setHeight(double height)
+    double height() const
     {
-        m_height = height;
+        return m_height;
     }
+
+    void setWidth(double width);
+
+    void setHeight(double height);
 
     double area() const;
 

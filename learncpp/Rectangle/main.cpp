@@ -38,3 +38,25 @@
 */
 
 #include "Rectangle.h"
+#include <iostream>
+
+int main()
+{
+    Rectangle rectangle{};
+
+    rectangle.setHeight(10);
+    rectangle.setWidth(10);
+
+    if (rectangle.isSquare())
+    {
+        std::cout << "The rectangle is a square.\n";
+    }
+    else
+    {
+        std::cout << "The rectangle is not a square\n";
+    }
+
+    rectangle.print();
+
+    return 0;
+}
