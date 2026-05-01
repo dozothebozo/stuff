@@ -42,12 +42,12 @@
 
 int main()
 {
-    Rectangle rectangle{};
+    Rectangle r1{4.0, 5.0};
+    Rectangle r2{3.0, 8.0};
 
-    rectangle.setHeight(10);
-    rectangle.setWidth(10);
+    const Rectangle& bigger{largerArea(r1, r2)};
 
-    if (rectangle.isSquare())
+    if (Rectangle{1, 1}.isSquare())
     {
         std::cout << "The rectangle is a square.\n";
     }
@@ -56,7 +56,7 @@ int main()
         std::cout << "The rectangle is not a square\n";
     }
 
-    rectangle.print();
+    bigger.print();
 
     return 0;
 }

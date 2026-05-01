@@ -33,4 +33,6 @@ class Rectangle
     void print() const;
 };
 
+const Rectangle& largerArea(const Rectangle& first, const Rectangle& second);
+
 #endif // !RECTANGLE_H

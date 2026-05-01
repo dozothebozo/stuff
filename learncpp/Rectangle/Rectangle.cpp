@@ -43,3 +43,8 @@ void Rectangle::print() const
     std::cout << "area: " << area() << '\n';
     std::cout << "perimeter: " << perimeter() << '\n';
 }
+
+const Rectangle& largerArea(const Rectangle& first, const Rectangle& second)
+{
+    return (first.area() >= second.area()) ? first : second;
+}
