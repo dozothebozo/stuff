@@ -34,3 +34,12 @@
     Fahrenheit = Celsius * 9 / 5 + 32
     Kelvin = Celsius + 273.15
 */
+
+#include "Temperature.h"
+
+int main()
+{
+    Temperature today{25};
+    today.print();
+    return 0;
+}
